@@ -116,6 +116,176 @@ nav a:hover::after {
   width: 100%; 
 }
 
+nav button#reservation-toggle {
+  color: var(--primary-color);
+  background: transparent;
+  border: none;
+  font-size: 1rem; 
+  font-weight: 500;
+  font-family: var(--body-font);
+  padding-bottom: 4px;
+  position: relative;
+  cursor: pointer;
+  transition: color .3s ease;
+}
+
+nav button#reservation-toggle::after {
+  content: ''; 
+  position: absolute; 
+  left: 0; 
+  bottom: 0;
+  width: 0; 
+  height: 2px; 
+  background: var(--accent-color);
+  transition: width .3s;
+}
+
+nav button#reservation-toggle:hover { 
+  color: var(--accent-color); 
+}
+
+nav button#reservation-toggle:hover::after { 
+  width: 100%; 
+}
+
+/* Reservation Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .7);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  position: relative;
+  background: var(--bg-color);
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+  animation: modalSlideIn .3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-color);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background .3s ease, color .3s ease;
+}
+
+.modal-close:hover {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.modal-content h3 {
+  font-family: var(--header-font);
+  font-size: 1.8rem;
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  color: var(--secondary-color);
+  margin-bottom: .5rem;
+  font-size: 1rem;
+}
+
+.form-group select,
+.form-group input[type="date"],
+.form-group input[type="time"] {
+  width: 100%;
+  padding: .75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: var(--body-font);
+  font-size: 1rem;
+  color: var(--text-color);
+  background: var(--bg-color);
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+
+.form-group select:focus,
+.form-group input[type="date"]:focus,
+.form-group input[type="time"]:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(200, 160, 100, .1);
+}
+
+.reserve-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--body-font);
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .3s ease, transform .2s ease;
+  margin-top: 1rem;
+}
+
+.reserve-btn:hover {
+  background: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.reserve-btn:active {
+  transform: translateY(0);
+}
+
 /* Menu Section */
 .menu-section { 
   padding: 5rem 10%; 

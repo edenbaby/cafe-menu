@@ -1,4 +1,56 @@
 document.addEventListener('DOMContentLoaded', () => {
+  /* Reservation Modal */
+  const reservationToggle = document.getElementById('reservation-toggle');
+  const reservationModal = document.getElementById('reservation-modal');
+  const modalOverlay = document.getElementById('modal-overlay');
+  const modalClose = document.getElementById('modal-close');
+  const reservationForm = document.getElementById('reservation-form');
+  const dateInput = document.getElementById('date');
+
+  // Set minimum date to today
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', today);
+
+  // Open modal
+  reservationToggle.addEventListener('click', () => {
+    reservationModal.classList.add('active');
+    reservationModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  });
+
+  // Close modal
+  const closeModal = () => {
+    reservationModal.classList.remove('active');
+    reservationModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  modalClose.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', closeModal);
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && reservationModal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  // Handle form submission
+  reservationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const persons = document.getElementById('persons').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    
+    // Show success message (in a real app, this would send data to a server)
+    alert(`Reservation successful!\nPersons: ${persons}\nDate: ${date}\nTime: ${time}`);
+    
+    // Reset form and close modal
+    reservationForm.reset();
+    closeModal();
+  });
+
   /* Animations on scroll */
   const animatedElements = document.querySelectorAll('.animate-on-scroll');
   const observer = new IntersectionObserver((entries) => {
@@ -195,11 +247,13 @@ document.addEventListener("DOMContentLoaded", ()=> {
 window.addEventListener("load", () => {
   const overlay = document.getElementById("loading-overlay");
 
-  overlay.classList.add("fade-out");
+  if (overlay) {
+    overlay.classList.add("fade-out");
 
-  setTimeout(() => {
-    if (overlay && overlay.parentNode) {
-      overlay.parentNode.removeChild(overlay);
-    }
-  }, 1000);
+    setTimeout(() => {
+      if (overlay && overlay.parentNode) {
+        overlay.parentNode.removeChild(overlay);
+      }
+    }, 1000);
+  }
 });
